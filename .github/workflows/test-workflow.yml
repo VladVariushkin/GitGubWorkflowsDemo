@@ -6,7 +6,4 @@ on:
 jobs:
 
   TEST:
-    runs-on: ubuntu-latest
-    steps:
-      - name: BUILD
-        uses: ./github/workflows/reusable-workflow.yml
+    uses: ./github/workflows/reusable-workflow.yml

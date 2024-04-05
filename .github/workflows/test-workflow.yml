@@ -8,7 +8,5 @@ jobs:
   TEST:
     runs-on: ubuntu-latest
     steps:
-
-      - name: HELLO WORLD
-        run: | 
-            echo Hello World
+      - name: BUILD
+        uses: ./github/workflows/reusable-workflow.yml

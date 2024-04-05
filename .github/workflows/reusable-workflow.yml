@@ -1,0 +1,38 @@
+name: REUSABLE-WORKFLOW
+on:
+  workflow_call:
+    inputs:
+      java_version:
+        required: true
+        default: 17
+        type: string
+      java_distribution:
+        required: true
+        default: temurin
+        type: string
+
+jobs:
+  BUILD:
+
+    defaults:
+      run:
+        shell: bash
+
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: CHECKOUT
+        uses: actions/checkout@v3
+
+      - name: SETUP JAVA
+        uses: actions/setup-java@v4
+        with:
+          distribution: ${{ inputs.java_distribution }}
+          java-version: ${{ inputs.java_version }}
+
+      - name: HELLO WORLD
+        run: |
+          run: |
+            SUMMARY=$'# Testing Job Summary\n REUSABLE JOB IS COMPLETE :rocket:'
+            echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
+

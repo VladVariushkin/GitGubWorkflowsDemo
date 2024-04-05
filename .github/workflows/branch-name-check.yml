@@ -18,6 +18,6 @@ jobs:
       - name: CHECK BRANCH NAME
         working-directory: ./hooks
         run : |
-          chmod +x ./pre-commit.sh ./pre-commit
+          chmod +x ./pre-commit
           ./pre-commit
 

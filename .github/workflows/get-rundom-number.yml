@@ -23,5 +23,5 @@ jobs:
 
       - name: PRINT NUMBER
         run: |
-            SUMMARY=| Value |\n| ${{ steps.random_number.outputs.random_number }} |'
+            SUMMARY='| Value |\n| ${{ steps.random_number.outputs.random_number }} |'
             echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY

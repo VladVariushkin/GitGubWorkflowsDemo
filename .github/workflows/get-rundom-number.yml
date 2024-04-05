@@ -23,5 +23,9 @@ jobs:
 
       - name: PRINT NUMBER
         run: |
-            SUMMARY="\n | Value | |\n| | ${{ steps.random_number.outputs.random_number }} |"
-            echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
+          {
+          echo "### :rocket: Workflow output"
+          echo "| Arg                 | Value |"
+          echo "| ------------------- | ----- |"
+          echo "| My number           | ${{ steps.random_number.outputs.random_number }} |"
+          } >> $GITHUB_STEP_SUMMARY

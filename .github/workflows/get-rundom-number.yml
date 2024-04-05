@@ -5,14 +5,22 @@ on:
     outputs:
       number:
         description: "RANDOM NUMBER"
-        value: ${{ jobs.example_job.outputs.output }}
+        value: ${{ jobs.GENERATE_RUNDOM_NUMBER.outputs.output }}
 
 jobs:
   GENERATE_RUNDOM_NUMBER:
-    name: Generate output
     runs-on: ubuntu-latest
+
     outputs:
       output: ${{ steps.step1.outputs.random_number }}
+
     steps:
-      - id: step1
-        run: echo "random_number=$RANDOM" >> $GITHUB_OUTPUT
+
+      - name: GENERATE OUTPUT
+        id: random_number
+        run: |
+          echo "random_number=$RANDOM" >> $GITHUB_OUTPUT
+
+      - name: PRINT NUMBER
+        run: |
+          echo ${{ steps.random_number.outputs.random_number }}

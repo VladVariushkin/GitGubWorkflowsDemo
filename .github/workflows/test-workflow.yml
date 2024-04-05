@@ -5,18 +5,19 @@ on:
 
 jobs:
 
-  TEST:
+  SETUP:
     uses: ./.github/workflows/reusable-workflow.yml
-  RANDOM_NUMER:
+  RANDOM_NUMBER:
+    needs: [SETUP]
     uses: ./.github/workflows/get-rundom-number.yml
   FINISH:
-    needs: [RANDOM_NUMER]
+    needs: [RANDOM_NUMBER]
     runs-on:
       - ubuntu-latest
     steps:
       - name: PRINT NUMBER
         run: |
-          echo ${{ needs.RANDOM_NUMER.outputs.number}}
+          echo ${{ needs.GENERATE_RUNDOM_NUMBER.outputs.number }}
     
 
   

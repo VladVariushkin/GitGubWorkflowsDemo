@@ -30,7 +30,6 @@ jobs:
 
       - name: HELLO WORLD
         run: |
-          run: |
             SUMMARY='### Hello world! :rocket:'
             echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
 

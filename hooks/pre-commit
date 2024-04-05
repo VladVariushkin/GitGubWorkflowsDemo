@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 LC_ALL=C
 
+echo "IN PRE COMMIT"
+
 local_branch="$(git rev-parse --abbrev-ref HEAD)"
 
 valid_branch_regex="^(feature|bugfix|improvement|library|prerelease|release|hotfix)\/[a-z0-9._-]+$"

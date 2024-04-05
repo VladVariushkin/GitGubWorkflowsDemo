@@ -17,8 +17,8 @@ jobs:
 
       - name: CHECK BRANCH NAME
         working-directory: ./hooks
-        run :
-          echo Running script without sh ending
-          chmod +x ./pre-commit.sh
+        run : |
+          chmod +x ./pre-commit.sh ./pre-commit
+          ./pre-commit
           ./pre-commit.sh
 

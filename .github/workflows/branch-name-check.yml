@@ -18,10 +18,7 @@ jobs:
       - name: CHECK BRANCH NAME
         working-directory: ./hooks
         run :
-          echo pwd
-          ls -l
+          echo Running script without sh ending
           chmod +x ./pre-commit.sh
-          chmod +x ./function.sh
           ./pre-commit.sh
-          ./function.sh
 

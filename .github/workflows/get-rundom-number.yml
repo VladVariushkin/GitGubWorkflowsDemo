@@ -1,0 +1,18 @@
+name: GET_RANDOM_NUMBER
+
+on:
+  workflow_call:
+    outputs:
+      number:
+        description: "RANDOM NUMBER"
+        value: ${{ jobs.example_job.outputs.output }}
+
+jobs:
+  GENERATE_RUNDOM_NUMBER:
+    name: Generate output
+    runs-on: ubuntu-latest
+    outputs:
+      output: ${{ steps.step1.outputs.random_number }}
+    steps:
+      - id: step1
+        run: echo "random_number=$RANDOM" >> $GITHUB_OUTPUT

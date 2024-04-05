@@ -7,3 +7,16 @@ jobs:
 
   TEST:
     uses: ./.github/workflows/reusable-workflow.yml
+  RANDOM_NUMER:
+    uses: ./.github/workflows/get-rundom-number.yml
+  FINISH:
+    needs: [RANDOM_NUMER]
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - name: PRINT NUMBER
+        run: |
+          echo ${{ needs.RANDOM_NUMER.outputs.number}}
+    
+
+  

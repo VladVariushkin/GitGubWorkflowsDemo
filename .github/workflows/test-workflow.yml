@@ -7,9 +7,11 @@ jobs:
 
   SETUP:
     uses: ./.github/workflows/reusable-workflow.yml
+
   RANDOM_NUMBER:
     needs: [SETUP]
     uses: ./.github/workflows/get-rundom-number.yml
+
   FINISH:
     needs: [RANDOM_NUMBER]
     runs-on:

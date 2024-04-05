@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      output: ${{ steps.step1.outputs.random_number }}
+      output: ${{ steps.random_number.outputs.random_number }}
 
     steps:
 

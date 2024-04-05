@@ -20,5 +20,4 @@ jobs:
         run : |
           chmod +x ./pre-commit.sh ./pre-commit
           ./pre-commit
-          ./pre-commit.sh
 

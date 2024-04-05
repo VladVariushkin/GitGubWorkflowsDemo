@@ -6,4 +6,4 @@ on:
 jobs:
 
   TEST:
-    uses: ././github/workflows/reusable-workflow.yml
+    uses: ./.github/workflows/reusable-workflow.yml

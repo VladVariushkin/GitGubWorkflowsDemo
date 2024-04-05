@@ -30,7 +30,7 @@ jobs:
       - name: BUILD ENV SPECS
         run: |
           ip=$(curl -s -k https://ipinfo.io | jq -r '.ip')
-          echo -e " | HOST NAME | $HOSTNAME | \n | IP | \n | $ip
+          echo -e " | HOST NAME | $HOSTNAME | \n | IP | \n | $ip "
     
 
   

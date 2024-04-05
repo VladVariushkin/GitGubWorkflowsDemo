@@ -20,5 +20,5 @@ jobs:
         run :
           echo $(git rev-parse --abbrev-ref HEAD)
           chmod +x pre-commit
-          pre-commit
+          bash pre-commit
 

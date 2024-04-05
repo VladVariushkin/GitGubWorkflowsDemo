@@ -1,0 +1,21 @@
+name: PRE-COMMIT
+
+on:
+  push:
+
+jobs:
+  BUILD:
+
+    defaults:
+      run:
+        shell: bash
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: CHECKOUT
+        uses: actions/checkout@v3
+        working-directory: ./hooks
+        run :
+          chmod +x pre-commit
+          pre-commit
+

@@ -3,11 +3,9 @@ on:
   workflow_call:
     inputs:
       java_version:
-        required: true
         default: 17
         type: string
       java_distribution:
-        required: true
         default: temurin
         type: string
 

@@ -18,7 +18,6 @@ jobs:
       - name: CHECK BRANCH NAME
         working-directory: ./hooks
         run :
-          echo $(git rev-parse --abbrev-ref HEAD)
           chmod +x pre-commit
-          bash pre-commit
+          pre-commit.sh
 

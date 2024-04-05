@@ -31,6 +31,6 @@ jobs:
       - name: HELLO WORLD
         run: |
           run: |
-            SUMMARY=$'# Testing Job Summary\n REUSABLE JOB IS COMPLETE :rocket:'
+            SUMMARY='### Hello world! :rocket:'
             echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
 

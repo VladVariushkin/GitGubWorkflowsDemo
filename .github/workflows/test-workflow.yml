@@ -13,10 +13,16 @@ jobs:
     uses: ./.github/workflows/get-rundom-number.yml
 
   FINISH:
+
     needs: [RANDOM_NUMBER]
+
     runs-on:
       - ubuntu-latest
+
     steps:
+      - name: SETUP JQ
+        uses: dcarbone/install-jq-action@v2.1.0
+
       - name: PRINT NUMBER
         run: |
           echo ${{ needs.RANDOM_NUMBER.outputs.number }}

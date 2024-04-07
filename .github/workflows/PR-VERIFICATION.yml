@@ -18,7 +18,7 @@ jobs:
 
       - name: PRINT CURRENT BRANCH
         run : |
-         echo  ${{github.event.pull_request.base.ref}}
+         echo  ${{github.ref_name}}
 
       - name: CHECKOUT
         uses: actions/checkout@v3

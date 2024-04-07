@@ -15,8 +15,8 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-
-      - uses: mdecoleman/pr-branch-name2.0.0
+      - name: GET PR BRANCH
+        uses: mdecoleman/pr-branch-name2.0.0
         id: vars
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}

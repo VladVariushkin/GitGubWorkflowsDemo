@@ -15,6 +15,11 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+
+      - name: PRINT CURRENT BRANCH
+        run : |
+         echo $(git rev-parse --abbrev-ref HEAD)
+
       - name: CHECKOUT
         uses: actions/checkout@v3
 

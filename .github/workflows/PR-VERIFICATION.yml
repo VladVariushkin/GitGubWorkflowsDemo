@@ -2,6 +2,7 @@ name: PR-VERIFICATION
 
 on:
   pull_request:
+    types: [opened, synchronize]
 
 jobs:
   BUILD:
@@ -15,14 +16,20 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: PR Branch Name
-        uses: mdecoleman/pr-branch-name@2.0.0
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: PRINT CURRENT BRANCH
-        run : |
-          echo ${{ steps.vars.outputs.branch }}
+      - name: Verify Branch Name
+        run: |
+          
+            PR_BRANCH=$(echo "${{ github.head_ref }}" | cut -d '/' -f 2)
+            
+            BRANCH_PATTERN="test/[A-Za-z0-9]*"
+            
+            if [[ ! "$PR_BRANCH" =~ $BRANCH_PATTERN ]]; then
+              echo "Error: Branch name '$PR_BRANCH' does not match the required pattern."
+              exit 1
+            else
+              echo "Branch name '$PR_BRANCH' is valid."
+            fi
 
       - name: CHECKOUT
         uses: actions/checkout@v3

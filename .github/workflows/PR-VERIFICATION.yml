@@ -22,7 +22,7 @@ jobs:
           
             PR_BRANCH= ${{ github.head_ref }}"
             
-            BRANCH_PATTERN="test/[A-Za-z0-9]*"
+            BRANCH_PATTERN="test\/[A-Za-z0-9]*"
             
             if [[ ! "$PR_BRANCH" =~ $BRANCH_PATTERN ]]; then
               echo "Error: Branch name '$PR_BRANCH' does not match the required pattern."

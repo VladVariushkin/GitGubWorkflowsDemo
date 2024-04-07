@@ -18,7 +18,7 @@ jobs:
 
       - name: PRINT CURRENT BRANCH
         run : |
-         echo $(git rev-parse --abbrev-ref HEAD)
+         echo ${{ github.ref }}
 
       - name: CHECKOUT
         uses: actions/checkout@v3

@@ -1,0 +1,1 @@
+[![TEST](https://github.com/VladVariushkin/GitGubWorkflowsDemo/actions/workflows/test-workflow.yml/badge.svg)](https://github.com/VladVariushkin/GitGubWorkflowsDemo/actions/workflows/test-workflow.yml)

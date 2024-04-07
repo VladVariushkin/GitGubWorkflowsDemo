@@ -1,0 +1,32 @@
+name: PR-VERIFICATION
+
+on:
+  pull_request:
+
+jobs:
+  BUILD:
+
+    defaults:
+      run:
+        shell: bash
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: CHECKOUT
+        uses: actions/checkout@v3
+
+      - name: CHECK BRANCH NAME
+        working-directory: ./hooks
+        run : |
+          chmod +x ./pre-commit
+          ./pre-commit
+
+      - name: EXECUTE TESTS
+        run : |
+          ./gradlew clean test
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure()
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'

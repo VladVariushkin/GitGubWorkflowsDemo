@@ -1,0 +1,31 @@
+name: GET_RANDOM_NUMBER
+
+on:
+  workflow_call:
+    outputs:
+      number:
+        description: "RANDOM NUMBER"
+        value: ${{ jobs.GENERATE_RUNDOM_NUMBER.outputs.output }}
+
+jobs:
+  GENERATE_RUNDOM_NUMBER:
+    runs-on: ubuntu-latest
+
+    outputs:
+      output: ${{ steps.random_number.outputs.random_number }}
+
+    steps:
+
+      - name: GENERATE OUTPUT
+        id: random_number
+        run: |
+          echo "random_number=$RANDOM" >> $GITHUB_OUTPUT
+
+      - name: PRINT NUMBER
+        run: |
+          {
+          echo "### :rocket: Workflow output"
+          echo "| Arg                 | Value |"
+          echo "| ------------------- | ----- |"
+          echo "| My number           | ${{ steps.random_number.outputs.random_number }} |"
+          } >> $GITHUB_STEP_SUMMARY

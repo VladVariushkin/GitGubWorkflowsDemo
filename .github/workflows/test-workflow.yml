@@ -5,10 +5,32 @@ on:
 
 jobs:
 
-  TEST:
-    runs-on: ubuntu-latest
-    steps:
+  SETUP:
+    uses: ./.github/workflows/reusable-workflow.yml
 
-      - name: HELLO WORLD
-        run: | 
-            echo Hello World
+  RANDOM_NUMBER:
+    needs: [SETUP]
+    uses: ./.github/workflows/get-rundom-number.yml
+
+  FINISH:
+
+    needs: [RANDOM_NUMBER]
+
+    runs-on:
+      - ubuntu-latest
+
+    steps:
+      - name: SETUP JQ
+        uses: dcarbone/install-jq-action@v2.1.0
+
+      - name: PRINT NUMBER
+        run: |
+          echo ${{ needs.RANDOM_NUMBER.outputs.number }}
+
+      - name: BUILD ENV SPECS
+        run: |
+          ip=$(curl -s -k https://ipinfo.io | jq -r '.ip')
+          echo -e " | HOST NAME | $HOSTNAME | \n | IP | \n | $ip " >> $GITHUB_STEP_SUMMARY
+    
+
+  

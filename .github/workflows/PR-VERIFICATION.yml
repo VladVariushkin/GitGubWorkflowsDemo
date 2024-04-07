@@ -16,9 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - uses: mdecoleman/pr-branch-name2.0.0
+        id: vars
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: PRINT CURRENT BRANCH
         run : |
-         echo  ${{github.ref_name}}
+          echo ${{ steps.vars.outputs.branch }}
 
       - name: CHECKOUT
         uses: actions/checkout@v3

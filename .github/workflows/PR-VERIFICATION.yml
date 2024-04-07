@@ -20,7 +20,7 @@ jobs:
       - name: Verify Branch Name
         run: |
           
-            PR_BRANCH=$(echo "${{ github.head_ref }}" | cut -d '/' -f 2)
+            PR_BRANCH= ${{ github.head_ref }}"
             
             BRANCH_PATTERN="test/[A-Za-z0-9]*"
             

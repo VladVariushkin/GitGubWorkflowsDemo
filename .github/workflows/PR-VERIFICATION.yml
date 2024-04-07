@@ -6,6 +6,9 @@ on:
 jobs:
   BUILD:
 
+    permissions:
+      checks: write
+
     defaults:
       run:
         shell: bash

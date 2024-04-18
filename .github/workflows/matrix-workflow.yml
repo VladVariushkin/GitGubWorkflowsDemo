@@ -3,6 +3,10 @@ name: MATRIX
 on:
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   GENERATE_MATRIX:
     uses: ./.github/workflows/matrix-workflow-reusable.yml
@@ -18,6 +22,10 @@ jobs:
       max-parallel: 2
 
     steps:
+      - name: SLEEP
+        run: |
+          sleep 5s
+
       - name: PRINTING ${{ matrix.folder }} FOLDER
         run: | 
           echo ${{ matrix.folder }}

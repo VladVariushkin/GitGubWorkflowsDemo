@@ -1,0 +1,45 @@
+name: CREATE_FOLDER_MATRIX
+
+on:
+  workflow_call:
+    outputs:
+      matrix:
+        description: "RANDOM NUMBER"
+        value: ${{ jobs.CREATE_MATRIX.outputs.matrix }}
+
+jobs:
+  CREATE_MATRIX:
+    runs-on: ubuntu-latest
+
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+
+    steps:
+      - name: IS JQ INSTALLED
+        run: |
+          if jq > dev/null 2>&1; then
+              echo "JQ is located"
+              exit_code=0;
+          else
+             echo "JQ is not located"
+             exit_code=1;
+          fi
+          echo "exit_code=$exit_code" >> $GITHUB_ENV
+
+      - name: INSTALL JQ
+        if: ${{ env.exit_code == 1 }}
+        uses: dcarbone/install-jq-action@v2.1.0
+
+      - name: CHECKOUT
+        uses: actions/checkout@v3
+
+      - name: GENERATE OUTPUT
+        id: matrix
+        run: |
+          FOLDERS_ARRAY=$(ls -d */ | sed 's/\///g')
+          MATRIX=$(printf '%s\n' "${FOLDERS_ARRAY[@]}" | jq -R . | jq -s '.' -c)
+          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
+
+      - name: PRINT_MATRIX
+        run: |
+          echo ${{ steps.matrix.outputs.matrix }}

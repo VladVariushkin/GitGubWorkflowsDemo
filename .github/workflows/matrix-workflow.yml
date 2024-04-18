@@ -1,0 +1,23 @@
+name: MATRIX
+
+on:
+  workflow_dispatch:
+
+jobs:
+  GENERATE_MATRIX:
+    uses: ./.github/workflows/matrix-workflow-reusable.yml
+
+  RUN_WITH_MATRIX:
+    needs: GENERATE_MATRIX
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        folder: ${{ fromJSON(needs.GENERATE_MATRIX.outputs.matrix) }}
+      fail-fast: false
+      max-parallel: 2
+
+    steps:
+      - name: PRINTING ${{ matrix.folder }} FOLDER
+        run: | 
+          echo ${{ matrix.folder }}

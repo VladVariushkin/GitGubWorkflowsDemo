@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   GENERATE_MATRIX:
-    uses: ./.github/workflows/matrix-workflow-reusable.yml
+    uses: ./.github/workflows/generate-folders-matrix-reusable.yml
 
   RUN_WITH_MATRIX:
     needs: GENERATE_MATRIX

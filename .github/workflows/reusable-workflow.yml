@@ -1,4 +1,5 @@
 name: REUSABLE-WORKFLOW
+
 on:
   workflow_call:
     inputs:
@@ -16,6 +17,9 @@ jobs:
       run:
         shell: bash
 
+    env:
+      secret : ${{ secrets.MY_SECRET }}
+
     runs-on: ubuntu-latest
     steps:
 
@@ -27,6 +31,11 @@ jobs:
         with:
           distribution: ${{ inputs.java_distribution }}
           java-version: ${{ inputs.java_version }}
+
+      - name: READ VAL FROM SECRETS
+        run: |
+          echo print the secret 
+          echo ${{ env.secret }} | sed 's/./& /g'
 
       - name: HELLO WORLD
         run: |

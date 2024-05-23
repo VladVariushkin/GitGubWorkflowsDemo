@@ -1,4 +1,4 @@
-name: TEST
+name: DEMO_WORKFLOW
 
 on:
   workflow_dispatch:
@@ -7,10 +7,11 @@ jobs:
 
   SETUP:
     uses: ./.github/workflows/reusable-workflow.yml
+    secrets: inherit
 
   RANDOM_NUMBER:
     needs: [SETUP]
-    uses: ./.github/workflows/get-rundom-number.yml
+    uses: ./.github/workflows/get-random-number.yml
 
   FINISH:
 
